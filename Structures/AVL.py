@@ -1,7 +1,8 @@
 import os
 class NodeAVL:
-    def __init__(self, key):
+    def __init__(self, key,name):
         self.key = key
+        self.name = name
         self.left = None
         self.right = None
         self.alt = 1
@@ -11,13 +12,13 @@ class AVL:
         self.rela=""
         self.inicio = 'digraph grafica{\nrankdir=TB;\n label=\"Arbol AVL Block\"; \n node [shape = record, style=filled, fillcolor=seashell2];\n'
 
-    def addNode(self, root, key):
+    def addNode(self, root, key,name):
         if root is None:
-            return NodeAVL(key)
+            return NodeAVL(key,name)
         elif key < root.key:
-            root.left = self.addNode(root.left, key)
+            root.left = self.addNode(root.left, key,name)
         else:
-            root.right = self.addNode(root.right, key)
+            root.right = self.addNode(root.right, key,name)
         if self.getNum(root) > 1 and key < root.left.key:
             return self.rotacionDerecha(root)
         if self.getNum(root) < -1 and key > root.right.key:
@@ -49,9 +50,12 @@ class AVL:
         z.alt = 1 + max(self.getalt(z.left),self.getalt(z.right))
         newRoot.alt = 1 + max(self.getalt(newRoot.left),self.getalt(newRoot.right))
         return newRoot
+    def rotation(self,root):
+        print("")
     def graphAVL(self,root):
         if root != None:
-            self.nodes = self.nodes + "nodo" + str(root.key) + " " + '[ label = \"<C0>|' + str(root.key) + '|<C1>\"];\n'
+            data = "Name: "+str(root.key)+"\n"+" Carne: " + root.name
+            self.nodes = self.nodes + "nodo" + str(root.key) + " " + '[ label = \"<C0>|'+data+'|<C1>\"];\n'
             if root.left != None:
                 self.rela = self.rela + "nodo" + str(root.key) + ":C0->" + "nodo" + str(root.left.key) + "\n"
             if root.right != None:
@@ -81,7 +85,7 @@ class AVL:
         print("{0} ".format(root.key), end="")
         self.preOrder(root.left)
         self.preOrder(root.right)
-avlTree = AVL()
+"""avlTree = AVL()
 root = None
 
 root = avlTree.addNode(root, 1)
@@ -96,4 +100,4 @@ root = avlTree.addNode(root, 8)
 
 avlTree.preOrder(root)
 avlTree.graphAVL(root)
-avlTree.graficarAvl()
+avlTree.graficarAvl()"""

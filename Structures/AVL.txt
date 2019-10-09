@@ -1,6 +1,6 @@
 digraph grafica{
 rankdir=TB;
- label="Arbol AVL Usuarios"; 
+ label="Arbol AVL Block"; 
  node [shape = record, style=filled, fillcolor=seashell2];
 nodo4 [ label = "<C0>|4|<C1>"];
 nodo2 [ label = "<C0>|2|<C1>"];
