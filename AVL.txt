@@ -2,8 +2,8 @@ digraph grafica{
 rankdir=TB;
  label="Arbol AVL Block"; 
  node [shape = record, style=filled, fillcolor=seashell2];
-nodo201701029 [ label = "<C0>|Name: 201701029
- Carne: Armando|<C1>"];
+nodoArmando [ label = "<C0>|Name: Armando
+ Carne: 201701029|<C1>"];
 nodoKyara [ label = "<C0>|Name: Kyara
  Carne: 2017010265|<C1>"];
 nodoMocica [ label = "<C0>|Name: Mocica
@@ -22,8 +22,8 @@ nodoEmiliana [ label = "<C0>|Name: Emiliana
  Carne: 2017010265|<C1>"];
 nodoDJ [ label = "<C0>|Name: DJ
  Carne: 20170102785|<C1>"];
-nodo201701029:C0->nodoKyara
-nodo201701029:C1->nodoAylin
+nodoArmando:C0->nodoKyara
+nodoArmando:C1->nodoAylin
 nodoKyara:C0->nodoMocica
 nodoKyara:C1->nodoMike
 nodoAylin:C0->nodoLucy

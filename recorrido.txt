@@ -1,0 +1,8 @@
+ digraph{
+rankdir=LR;  
+ node [shape=record];
+label="INORDEN"
+label="PREORDEN"
+label="PREORDEN"
+Mocica->Mike->Kyara->Lucy->Karol->DJ->Emiliana->DulMa->Aylin->Armando
+}

@@ -9,9 +9,11 @@ class NodeAVL:
 class AVL:
     def __init__(self):
         self.nodes=""
+        self.rela2=""
         self.rela=""
+        self.nodes=""
         self.inicio = 'digraph grafica{\nrankdir=TB;\n label=\"Arbol AVL Block\"; \n node [shape = record, style=filled, fillcolor=seashell2];\n'
-
+        self.recorrido = ' digraph{\nrankdir=LR;  \n node [shape=record];\n'
     def addNode(self, root, key,name):
         if root is None:
             return NodeAVL(key,name)
@@ -62,6 +64,43 @@ class AVL:
                 self.rela = self.rela + "nodo" + str(root.key) + ":C1->" + "nodo" + str(root.right.key) + "\n"
             self.graphAVL(root.left)
             self.graphAVL(root.right)
+
+    def grafReco(self, reco):
+        self.recorrido += 'label=\"' + reco + '\"\n'
+        self.rela2= self.rela2[:-2:]
+        with open("recorrido.txt", 'w', encoding='utf-8') as f:
+            f.write(self.recorrido + self.rela2+"\n}")
+            f.close()
+        cmd = 'dot -Tpng recorrido.txt -o reco.png'
+        os.system(cmd)
+        os.system('reco.png')
+        self.nodes = "";
+        self.rela2 = "";
+
+    def recoIn(self,raiz):
+        if raiz is None:
+            print("")
+        else:
+            self.recoIn(raiz.left);
+            self.rela2 += raiz.key;
+            self.rela2 += "->";
+            self.recoIn(raiz.right);
+    def recoPost(self,raiz):
+        if raiz is None:
+            print("")
+        else:
+            self.recoPost(raiz.left);
+            self.recoPost(raiz.right);
+            self.rela2 += raiz.key;
+            self.rela2 += "->";
+    def recoPre(self,raiz):
+        if raiz is None:
+            print("")
+        else:
+            self.rela2 += raiz.key;
+            self.rela2 += "->";
+            self.recoPost(raiz.left);
+            self.recoPost(raiz.right);
 
     def rotacionDerecha(self, nodo):
         newRoot = nodo.left

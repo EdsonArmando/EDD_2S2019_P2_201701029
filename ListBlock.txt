@@ -1,0 +1,6 @@
+digraph { 
+ node [shape=record]; 
+ label="ListBlock";
+ null [label="NULL" shape=box];
+-1:ref:c->null
+}

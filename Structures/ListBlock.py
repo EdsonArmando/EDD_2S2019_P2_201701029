@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 import hashlib
 class BlockNode:
@@ -17,12 +18,10 @@ class ListBlockChain:
         self.first=None
         self.last=None
         self.cont=0
-    def addBlock(self):
-        new = BlockNode()
+    def addBlock(self,nodo):
+        new = nodo
         if self.first is None:
             new.index=self.cont
-            new.data="EDD"
-            new.claSS="[EDD]"
             new.prevHash ="0000"
             new.hash = self.sha256(str(new.index)+str(new.time)+str(new.claSS)+str(new.data)+str(new.prevHash))
             self.last = new
@@ -30,8 +29,6 @@ class ListBlockChain:
             self.last.next=None
         else:
             new.index = self.cont
-            new.data = "EDD"
-            new.claSS = "[EDD]"
             new.prevHash = self.last.hash
             new.hash = self.sha256(str(new.index)+str(new.time)+str(new.claSS)+str(new.data)+str(new.prevHash))
             self.last.next=new
@@ -39,6 +36,25 @@ class ListBlockChain:
             self.last=new
             self.last.next=None
         self.cont+=1
+
+    def GenerateImage(self):
+        texto = 'digraph { \n node [shape=record]; \n label="ListBlock";\n null [label="NULL" shape=box];\n'
+        datesSocre = ""
+        aux = self.first
+        cont = 0
+        while aux != None:
+            datesSocre += str(cont) + '[label="{<data> ' + 'Class: ' + aux.claSS + '\\n Time: ' + aux.time +\
+                          "\\n Has: "+aux.hash+"\\n PrevHash: "+aux.prevHash+ '| <ref>  }", width=1.2]\n'
+            if aux.next != None:
+                datesSocre += str(cont) + ':ref:c' + '->' + str(cont + 1) + ':data\n'
+            cont += 1
+            aux = aux.next
+        with open("ListBlock.txt", 'w', encoding='utf-8') as f:
+            f.write(texto + datesSocre + str(cont - 1) + ':ref:c->null\n}')
+            f.close()
+        cmd = 'dot -Tpng ListBlock.txt -o listBlock.png'
+        os.system(cmd)
+        os.system('listBlock.png')
     def showBlock(self):
         aux=self.first
         while aux !=None:
@@ -47,11 +63,3 @@ class ListBlockChain:
     def sha256(self,val):
         h=hashlib.sha256(val.encode()).hexdigest()
         return h
-
-list = ListBlockChain()
-list.addBlock()
-list.addBlock()
-list.addBlock()
-list.addBlock()
-list.addBlock()
-list.showBlock()
