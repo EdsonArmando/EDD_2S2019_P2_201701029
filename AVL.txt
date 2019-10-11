@@ -8,27 +8,51 @@ nodoKyara [ label = "<C0>|Name: Kyara
  Carne: 2017010265|<C1>"];
 nodoMocica [ label = "<C0>|Name: Mocica
  Carne: 2017010265|<C1>"];
+nododos [ label = "<C0>|Name: dos
+ Carne: 201701027485|<C1>"];
+nodouno [ label = "<C0>|Name: uno
+ Carne: 201701027485|<C1>"];
 nodoMike [ label = "<C0>|Name: Mike
  Carne: 201875498|<C1>"];
+nodotres [ label = "<C0>|Name: tres
+ Carne: 201701027485|<C1>"];
+nodocuatro [ label = "<C0>|Name: cuatro
+ Carne: 201701027485|<C1>"];
 nodoAylin [ label = "<C0>|Name: Aylin
  Carne: 2015478524|<C1>"];
 nodoLucy [ label = "<C0>|Name: Lucy
  Carne: 2017010265|<C1>"];
+nodosiete [ label = "<C0>|Name: siete
+ Carne: 201701027485|<C1>"];
+nodoocho [ label = "<C0>|Name: ocho
+ Carne: 201701027485|<C1>"];
 nodoDulMa [ label = "<C0>|Name: DulMa
  Carne: 2017010265|<C1>"];
 nodoKarol [ label = "<C0>|Name: Karol
  Carne: 201524156|<C1>"];
+nodoAlice [ label = "<C0>|Name: Alice
+ Carne: 202203541|<C1>"];
 nodoEmiliana [ label = "<C0>|Name: Emiliana
  Carne: 2017010265|<C1>"];
 nodoDJ [ label = "<C0>|Name: DJ
  Carne: 20170102785|<C1>"];
+nododiez [ label = "<C0>|Name: diez
+ Carne: 201701027485|<C1>"];
 nodoArmando:C0->nodoKyara
 nodoArmando:C1->nodoAylin
 nodoKyara:C0->nodoMocica
 nodoKyara:C1->nodoMike
+nodoMocica:C0->nododos
+nodoMocica:C1->nodouno
+nodoMike:C0->nodotres
+nodoMike:C1->nodocuatro
 nodoAylin:C0->nodoLucy
 nodoAylin:C1->nodoDulMa
+nodoLucy:C0->nodosiete
+nodoLucy:C1->nodoocho
 nodoDulMa:C0->nodoKarol
 nodoDulMa:C1->nodoEmiliana
+nodoKarol:C0->nodoAlice
 nodoEmiliana:C0->nodoDJ
+nodoEmiliana:C1->nododiez
 }

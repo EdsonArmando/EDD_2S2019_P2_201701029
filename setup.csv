@@ -1,9 +1,2 @@
-class, Estructura de Datos
-data, {"value":"201403525-Nery",
-	   "left":{"value":"201212963-Andres","left":{"value":"201005874-Estudiante1","left":null, "right":null}},
-	   "right":{"value":"201403819-Anne","left":{"value":"201403624-Fernando","left":null, "right":null},"right":{"value":"20160255-Estudiante2","left":null,"right":null }
-		}}
-		}
-		}}
-		
-		
+class,Estructuras de Datos
+data,{"value":"Armando-201701029", "left":{"value":"Kyara-2017010265", "left":{"value":"Mocica-2017010265", "left":{"value":"dos-201701027485", "left":null, "right":null}, "right":{"value":"uno-201701027485", "left":null, "right":null}}, "right":{"value":"Mike-201875498", "left":{"value":"tres-201701027485", "left":null, "right":null}, "right":{"value":"cuatro-201701027485", "left":null, "right":null}}},"right":{"value":"Aylin-2015478524", "left":{"value":"Lucy-2017010265", "left":{"value":"siete-201701027485", "left":null, "right":null}, "right":{"value":"ocho-201701027485", "left":null, "right":null}},"right":{"value":"DulMa-2017010265", "left":{"value":"Karol-201524156", "left":{"value":"Alice-202203541", "left":null, "right":null}, "right":null}, "right":{"value":"Emiliana-2017010265", "left":{"value":"DJ-20170102785", "left":null, "right":null}, "right":{"value":"diez-201701027485", "left":null, "right":null}}}}}

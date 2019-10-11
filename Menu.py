@@ -11,9 +11,11 @@ class dataNode:
         self.name=name
         self.left=left
         self.right=right
+
 class Menu:
     def __init__(self):
         self.root=None
+        self.data = None
     def Menu(self):
         print("Ingrese opcion: ")
         print("1. Insert Block")
@@ -23,6 +25,13 @@ class Menu:
         if op=="1":
             print("Insert Ruta")
             ruta = input()
+            f = open(ruta, 'r', encoding='utf-8')
+            if f.mode == "r":
+                contents = f.read()
+                cont = contents.split("\n")
+            clase=cont[0]
+            data=cont[1]
+            self.data=data.replace("data,","")
             self.insertBlock(ruta,"Estructuras de Datos")
             self.Menu()
         elif op=="3":
@@ -30,7 +39,8 @@ class Menu:
             print("2. Recorridos")
             op = input()
             if op=="1":
-                self.castJson()
+
+                self.castJson(self.data)
             if op=="2":
                 print("1. INORDEN")
                 print("2. PREORDEN")
@@ -54,15 +64,12 @@ class Menu:
         list.addBlock(nodo)
         list.showBlock()
 
-    def castJson(self):
-
+    def castJson(self,avleData):
+        print(avleData)
         # json data string
-        avlData = '{"value":"Armando-201701029", "left":{"value":"Kyara-2017010265", "left":{"value":"Mocica-2017010265", "left":null, "right":null}, "right":{"value":"Mike-201875498", "left":null, "right":null}}, ' \
-                  '"right":{"value":"Aylin-2015478524", "left":{"value":"Lucy-2017010265", "left":null, "right":null}, ' \
-                  '"right":{"value":"DulMa-2017010265", "left":{"value":"Karol-201524156", "left":null, "right":null}, "right":{"value":"Emiliana-2017010265", "left":{"value":"DJ-20170102785", "left":null, "right":null}, "right":null}}}}'
-        # Decoding or converting JSON format in dictionary using loads()
-        dict_obj = json.loads(avlData)
-        print(dict_obj)
+        avlData ='{"value":"Armando-201701029", "left":{"value":"Kyara-2017010265", "left":{"value":"Mocica-2017010265", "left":null, "right":null}, "right":{"value":"Mike-201875498", "left":null, "right":null}},"right":{"value":"Aylin-2015478524", "left":{"value":"Lucy-2017010265", "left":null, "right":null},"right":{"value":"DulMa-2017010265", "left":{"value":"Karol-201524156", "left":null, "right":null}, "right":{"value":"Emiliana-2017010265", "left":{"value":"DJ-20170102785", "left":null, "right":null}, "right":null}}}}'
+
+        dict_obj = json.loads(str(avleData))
         value=None
         left=None
         right=None
@@ -91,7 +98,7 @@ class Menu:
             return NodeAVL(key,name)
         if root.right is None and right != None:
             root.right = self.retornNode(root.right,valRigt[0],valRigt[1],left,right)
-        elif root.left is None and left !=None:
+        if root.left is None and left !=None:
             root.left = self.retornNode(root.left, valLeft[0], valLeft[1], left, right)
         if right !=None:
             root.right = self.retornNode(root.right, valRigt[0], valRigt[1], right["left"], right["right"])

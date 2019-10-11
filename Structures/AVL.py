@@ -82,7 +82,7 @@ class AVL:
             print("")
         else:
             self.recoIn(raiz.left);
-            self.rela2 += raiz.key;
+            self.rela2 += raiz.key+"_"+raiz.name;
             self.rela2 += "->";
             self.recoIn(raiz.right);
     def recoPost(self,raiz):
@@ -91,13 +91,13 @@ class AVL:
         else:
             self.recoPost(raiz.left);
             self.recoPost(raiz.right);
-            self.rela2 += raiz.key;
+            self.rela2 += raiz.key+"_"+raiz.name;
             self.rela2 += "->";
     def recoPre(self,raiz):
         if raiz is None:
             print("")
         else:
-            self.rela2 += raiz.key;
+            self.rela2 += raiz.key+"_"+raiz.name;
             self.rela2 += "->";
             self.recoPost(raiz.left);
             self.recoPost(raiz.right);
