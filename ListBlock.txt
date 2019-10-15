@@ -2,6 +2,6 @@ digraph {
  node [shape=record]; 
  label="ListBlock";
  null [label="NULL" shape=box];
-0[label="{<data> Class: Estructuras de Datos\n Time: 11-10-19: :11:22:12\n Has: 642e30f360fb2640ebb036d26bb4d93613623fc09a95e787e50d6e36982c77aa\n PrevHash: 0000| <ref>  }", width=1.2]
+0[label="{<data> Class: Estructuras de Datos\n Time: 11-10-19: :15:39:57\n Has: bb94ba5537478cbbf47a6ac125aa26809979fe58b0e9e8abc17265487f283b0c\n PrevHash: 0000| <ref>  }", width=1.2]
 0:ref:c->null
 }

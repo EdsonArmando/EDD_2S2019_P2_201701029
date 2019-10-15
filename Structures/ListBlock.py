@@ -6,6 +6,7 @@ class BlockNode:
         now = datetime.now()
         self.time = now.strftime("%d-%m-%y: :%H:%M:%S")
         self.index=0
+        self.datos=None
         self.data = None
         self.claSS=None
         self.hash=None
@@ -20,22 +21,18 @@ class ListBlockChain:
         self.cont=0
     def addBlock(self,nodo):
         new = nodo
+        datas = new.data
         if self.first is None:
-            new.index=self.cont
-            new.prevHash ="0000"
-            new.hash = self.sha256(str(new.index)+str(new.time)+str(new.claSS)+str(new.data)+str(new.prevHash))
             self.last = new
             self.first = new
             self.last.next=None
         else:
-            new.index = self.cont
             new.prevHash = self.last.hash
-            new.hash = self.sha256(str(new.index)+str(new.time)+str(new.claSS)+str(new.data)+str(new.prevHash))
             self.last.next=new
             new.prev=self.last
             self.last=new
             self.last.next=None
-        self.cont+=1
+
 
     def GenerateImage(self):
         texto = 'digraph { \n node [shape=record]; \n label="ListBlock";\n null [label="NULL" shape=box];\n'
@@ -58,7 +55,16 @@ class ListBlockChain:
     def showBlock(self):
         aux=self.first
         while aux !=None:
-            print("No: ", aux.index, "Time: ", aux.time , "Hash", aux.prevHash)
+            print("No: ", aux.index, "Time: ", aux.time , "Hash", aux.prevHash,"Class: ", aux.claSS)
+            print(aux.data)
+            aux=aux.next
+    def returnFirt(self):
+        return self.first
+    def returnBlock(self,key):
+        aux=self.first
+        while aux !=None:
+            if aux.claSS==key:
+                return aux
             aux=aux.next
     def sha256(self,val):
         h=hashlib.sha256(val.encode()).hexdigest()

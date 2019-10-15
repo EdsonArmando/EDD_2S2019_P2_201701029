@@ -64,8 +64,22 @@ class AVL:
                 self.rela = self.rela + "nodo" + str(root.key) + ":C1->" + "nodo" + str(root.right.key) + "\n"
             self.graphAVL(root.left)
             self.graphAVL(root.right)
+    def generateString(self,raiz,tipo):
+        string='"DATA": {\n'
+        data=""
+        if raiz is None:
+            print("")
+        else:
+            if tipo !="izquierda" and tipo !="derecha":
+                data +='\t "Value": "'+str(raiz.key)+"-"+raiz.name+'"'
+            if tipo=="izquierda":
+                data += '"Left":{ \n\t'
+                data += '"Value": "' + str(raiz.key) + "-" + raiz.name + '"'
+            self.generateString(raiz.left,"izquierda")
+            self.generateString(raiz.right,"derecha")
 
     def grafReco(self, reco):
+        print("Inici o->",self.rela2,"null")
         self.recorrido += 'label=\"' + reco + '\"\n'
         self.rela2= self.rela2[:-2:]
         with open("recorrido.txt", 'w', encoding='utf-8') as f:
@@ -74,33 +88,33 @@ class AVL:
         cmd = 'dot -Tpng recorrido.txt -o reco.png'
         os.system(cmd)
         os.system('reco.png')
-        self.nodes = "";
-        self.rela2 = "";
+        self.nodes = ""
+        self.rela2 = ""
 
     def recoIn(self,raiz):
         if raiz is None:
             print("")
         else:
-            self.recoIn(raiz.left);
-            self.rela2 += raiz.key+"_"+raiz.name;
-            self.rela2 += "->";
-            self.recoIn(raiz.right);
+            self.recoIn(raiz.left)
+            self.rela2 += raiz.key+"_"+raiz.name
+            self.rela2 += "->"
+            self.recoIn(raiz.right)
     def recoPost(self,raiz):
         if raiz is None:
             print("")
         else:
-            self.recoPost(raiz.left);
-            self.recoPost(raiz.right);
-            self.rela2 += raiz.key+"_"+raiz.name;
-            self.rela2 += "->";
+            self.recoPost(raiz.left)
+            self.recoPost(raiz.right)
+            self.rela2 += raiz.key+"_"+raiz.name
+            self.rela2 += "->"
     def recoPre(self,raiz):
         if raiz is None:
             print("")
         else:
-            self.rela2 += raiz.key+"_"+raiz.name;
-            self.rela2 += "->";
-            self.recoPost(raiz.left);
-            self.recoPost(raiz.right);
+            self.rela2 += raiz.key+"_"+raiz.name
+            self.rela2 += "->"
+            self.recoPost(raiz.left)
+            self.recoPost(raiz.right)
 
     def rotacionDerecha(self, nodo):
         newRoot = nodo.left
