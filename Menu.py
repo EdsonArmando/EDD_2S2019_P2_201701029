@@ -10,7 +10,10 @@ from curses import KEY_LEFT
 import socket
 import select
 import sys
+
 list = ListBlockChain()
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.connect(("localhost", 8080))
 class dataNode:
     def __init__(self, name, key, left, right):
         self.key = key
@@ -28,100 +31,121 @@ class Menu:
 
     def Menu(self):
         avl = AVL()
-        print("Ingrese opcion: ")
-        print("1. Insert Block")
-        print("2. Select Block")
-        print("3. Reports")
-        op = input()
-        if op == "1":
-            print("Insert Ruta")
-            ruta = input()
-
-            f = open(ruta, 'r', encoding='utf-8')
-            if f.mode == "r":
-                contents = f.read()
-                cont = contents.split("\n")
-            clase = cont[0]
-            data = cont[1]
-            self.data = data.replace("data,", "")
-            self.insertBlock(self.data, clase.split(",")[1])
-            self.data = ""
-            self.Menu()
-        elif op == "2":
-            node = list.returnFirt()
-            stdscr = curses.initscr()
-            win = curses.newwin(42, 120, 0, 0)
-            curses.noecho()
-            curses.cbreak()
-            curses.curs_set(0)
-            win.keypad(True)
-            key = None
-            while (key != ord('q')):
-                win.addstr(2, 30, "Move Block")
-                key = win.getch()
-                stdscr.clear()
-                if key == KEY_LEFT:
-                    win.clear()
-                    win.border(0)
-                    win.refresh()
-                    if node.prev != None:
-                        node = node.prev
-                    win.addstr(10, 40, str(node.data))
-                elif key == KEY_RIGHT:
-                    win.clear()
-                    win.border(0)
-                    win.refresh()
-                    win.addstr(10, 40, str(node.data))
-                    print(node.data)
-                    if node.next != None:
-                        node = node.next
-                elif key == KEY_UP:
-                    break;
-            win.clear()
-            curses.endwin()
-            self.Menu()
-        elif op == "3":
-            print("1. AVL")
-            print("2. Recorridos")
+        nodoGlobal = None
+        while True:
+            read_sockets = select.select([server], [], [], 1)[0]
+            import msvcrt
+            if msvcrt.kbhit(): read_sockets.append(sys.stdin)
+            for socks in read_sockets:
+                if socks == server:
+                    message = socks.recv(2048)
+                    if nodoGlobal != None:
+                        if message.decode('utf-8') == "true":
+                            list.addBlock(nodoGlobal)
+                            nodoGlobal = None
+                            print("Block add succes")
+                        else:
+                            print("Block us failed")
+                    else:
+                        print(message.decode('utf-8'))
+                else:
+                    print("")
+            print("Ingrese opcion: ")
+            print("1. Insert Block")
+            print("2. Select Block")
+            print("3. Reports")
             op = input()
             if op == "1":
-                list.showBlock()
-                print("Insert key Block")
-                key = input()
-                nodeAVL = list.returnBlock(key)
-                self.castJson(nodeAVL.datos)
-                self.Menu()
-            if op == "2":
-                print("1. INORDEN")
-                print("2. PREORDEN")
-                print("3. POSTORDEN")
+                print("Insert Ruta")
+                ruta = input()
+
+                f = open(ruta, 'r', encoding='utf-8')
+                if f.mode == "r":
+                    contents = f.read()
+                    cont = contents.split("\n")
+                clase = cont[0]
+                data = cont[1]
+                self.data = data.replace("data,", "")
+                nodoGlobal=self.insertBlock(self.data, clase.split(",")[1])
+                self.data = ""
+            elif op == "2":
+                node = list.returnFirt()
+                stdscr = curses.initscr()
+                win = curses.newwin(42, 120, 0, 0)
+                curses.noecho()
+                curses.cbreak()
+                curses.curs_set(0)
+                win.keypad(True)
+                key = None
+                while (key != ord('q')):
+                    win.addstr(2, 30, "Move Block")
+                    key = win.getch()
+                    stdscr.clear()
+                    if key == KEY_LEFT:
+                        win.clear()
+                        win.border(0)
+                        win.refresh()
+                        if node.prev != None:
+                            node = node.prev
+                        win.addstr(10, 40, str(node.data))
+                    elif key == KEY_RIGHT:
+                        win.clear()
+                        win.border(0)
+                        win.refresh()
+                        win.addstr(10, 40, str(node.data))
+                        print(node.data)
+                        if node.next != None:
+                            node = node.next
+                    elif key == KEY_UP:
+                        break;
+                win.clear()
+                curses.endwin()
+                print("hola")
+            elif op == "3":
+                print("1. AVL")
+                print("2. Recorridos")
                 op = input()
                 if op == "1":
-                    avl.recoIn(self.root)
-                    avl.grafReco("INORDEN")
-                elif op == "2":
-                    avl.recoPre(self.root)
-                    avl.grafReco("PREORDEN")
-                elif op == "3":
-                    avl.recoPre(self.root)
-                    avl.grafReco("POSTORDEN")
-                self.Menu()
+                    list.showBlock()
+                    print("Insert key Block")
+                    key = input()
+                    nodeAVL = list.returnBlock(key)
 
-    def insertBlock(self, data, classs):
+                    self.castJson(nodeAVL.datos)
+                if op == "2":
+                    print("1. INORDEN")
+                    print("2. PREORDEN")
+                    print("3. POSTORDEN")
+                    op = input()
+                    if op == "1":
+                        avl.recoIn(self.root)
+                        avl.grafReco("INORDEN")
+                    elif op == "2":
+                        avl.recoPre(self.root)
+                        avl.grafReco("PREORDEN")
+                    elif op == "3":
+                        avl.recoPost(self.root)
+                        avl.grafReco("POSTORDEN")
+
+
+    def insertBlock(self, data,classs):
         new = BlockNode()
         dataJson = json.dumps(json.loads(data), indent=4)
         new.datos = data
         new.claSS = classs
         new.index = self.cont
-        new.hash = self.sha256(str(new.index) + str(new.time) + str(new.claSS) + str(new.data) + str(new.prevHash))
         if self.cont == 0:
             new.prevHash = "0000"
         elif self.cont > 0:
             new.prevHash = self.prevHash
+        new.hash = self.sha256(str(new.index) + str(new.time) + str(new.claSS)+str(dataJson) + str(new.prevHash))
         new.data = '{\n"INDEX"' + ': ' + str(new.index) + ',\n"TIMESTAP"' + ': ' + '"' + str(new.time) + '"' + ',\n"CLASS"' + ': ' + '"' + str(new.claSS) + '",' + '\n"DATA"' + ': '+ str(dataJson) + ',\n"PREVIUSHASH"' + ': ' + '"' + str(new.prevHash) + '"' + ',\n"HASH"' + ': ' + '"' + str(new.hash) + '"' + '\n}'
-        list.addBlock(new)
+        print(dataJson)
+        server.sendall(new.data.encode('utf-8'))
+        sys.stdout.flush()
         self.cont += 1
         self.prevHash = new.hash
+        return new
     def sha256(self, val):
         h = hashlib.sha256(val.encode()).hexdigest()
         return h
@@ -148,7 +172,6 @@ class Menu:
         self.root = root
         avl.graphAVL(root)
         avl.graficarAvl()
-
     def retornAVLNode(self, root, key, name, left, right):
         if left != None:
             valLeft = left["value"].split("-")
@@ -165,5 +188,8 @@ class Menu:
         if left != None:
             root.left = self.retornAVLNode(root.left, valLeft[0], valLeft[1], left["left"], left["right"])
         return root
+
+
 menu = Menu()
 menu.Menu()
+server.close()
