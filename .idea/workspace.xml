@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48510a86-5b84-4d7d-9864-196b7d8ec004" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/EDD_2S2019_P2_201701029.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EDD_2S2019_P2_201701029.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListBlock.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListBlock.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Structures/AVL.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structures/AVL.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Structures/ListBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Structures/ListBlock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listBlock.png" beforeDir="false" afterPath="$PROJECT_DIR$/listBlock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reco.png" beforeDir="false" afterPath="$PROJECT_DIR$/reco.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recorrido.txt" beforeDir="false" afterPath="$PROJECT_DIR$/recorrido.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
+            <state relative-caret-position="119">
+              <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -34,26 +27,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client2_windows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="27" column="14" lean-forward="true" selection-start-line="13" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="184">
+              <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+              <folding>
+                <element signature="e#56#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="118" column="26" lean-forward="true" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+            <state relative-caret-position="85">
+              <caret line="122" column="40" lean-forward="true" selection-start-line="122" selection-start-column="40" selection-end-line="122" selection-end-column="40" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -62,10 +58,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup2.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="931" selection-start-line="1" selection-start-column="931" selection-end-line="1" selection-end-column="931" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Structures/ListBlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -102,7 +107,9 @@
       <find>start_new_thread</find>
       <find>clientthread</find>
       <find>broadcast_to_all</find>
+      <find>dataJson</find>
       <find>broadcast</find>
+      <find>recv</find>
       <find>insertBlock</find>
     </findStrings>
     <replaceStrings>
@@ -122,17 +129,17 @@
         <option value="$PROJECT_DIR$/Structures/AVL.py" />
         <option value="$PROJECT_DIR$/setup2.csv" />
         <option value="$PROJECT_DIR$/setup3.csv" />
-        <option value="$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py" />
-        <option value="$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py" />
         <option value="$USER_HOME$/Desktop/Proyectos/ServidorFinal/client2_windows.py" />
         <option value="$PROJECT_DIR$/Structures/ListBlock.py" />
+        <option value="$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py" />
         <option value="$PROJECT_DIR$/Menu.py" />
+        <option value="$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1469" />
-    <option name="y" value="37" />
+    <option name="x" value="2019" />
+    <option name="y" value="331" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -315,19 +322,19 @@
     <frame x="1358" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.14285715" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.14285715" />
       <window_info id="Structure" order="1" sideWeight="0.5027933" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.58630955" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.58556545" weight="0.45008183" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.58556545" visible="true" weight="0.39770868" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.61383927" weight="0.32733223" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.5677083" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41369048" side_tool="true" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41443452" side_tool="true" visible="true" weight="0.39770868" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -347,23 +354,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py</url>
-          <line>23</line>
+          <line>19</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py</url>
-          <line>13</line>
+          <line>19</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py</url>
-          <line>5</line>
+          <line>6</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py</url>
-          <line>87</line>
+          <line>82</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Menu.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -447,13 +464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="48" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup3.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -461,40 +471,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py">
+    <entry file="file://$PROJECT_DIR$/setup2.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="13" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client2_windows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="17">
+          <caret line="1" column="931" selection-start-line="1" selection-start-column="931" selection-end-line="1" selection-end-column="931" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Structures/ListBlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client2_windows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="118" column="26" lean-forward="true" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+        <state relative-caret-position="85">
+          <caret line="122" column="40" lean-forward="true" selection-start-line="122" selection-start-column="40" selection-end-line="122" selection-end-column="40" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Proyectos/ServidorFinal/client_windows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="e#56#69#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -56,7 +56,6 @@ class ListBlockChain:
         aux=self.first
         while aux !=None:
             print("No: ", aux.index, "Time: ", aux.time , "Hash", aux.prevHash,"Class: ", aux.claSS)
-            print(aux.data)
             aux=aux.next
     def returnFirt(self):
         return self.first
