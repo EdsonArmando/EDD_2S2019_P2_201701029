@@ -10,12 +10,7 @@ from curses import KEY_LEFT
 import socket
 import select
 import sys
-
 list = ListBlockChain()
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.connect(("localhost", 8000))
-
-
 class dataNode:
     def __init__(self, name, key, left, right):
         self.key = key
@@ -51,6 +46,7 @@ class Menu:
             self.data = data.replace("data,", "")
             self.insertBlock(self.data, clase.split(",")[1])
             self.data = ""
+            self.Menu()
         elif op == "2":
             node = list.returnFirt()
             stdscr = curses.initscr()
@@ -83,7 +79,7 @@ class Menu:
                     break;
             win.clear()
             curses.endwin()
-            print("hola")
+            self.Menu()
         elif op == "3":
             print("1. AVL")
             print("2. Recorridos")
@@ -93,8 +89,8 @@ class Menu:
                 print("Insert key Block")
                 key = input()
                 nodeAVL = list.returnBlock(key)
-
                 self.castJson(nodeAVL.datos)
+                self.Menu()
             if op == "2":
                 print("1. INORDEN")
                 print("2. PREORDEN")
@@ -109,6 +105,7 @@ class Menu:
                 elif op == "3":
                     avl.recoPre(self.root)
                     avl.grafReco("POSTORDEN")
+                self.Menu()
 
     def insertBlock(self, data, classs):
         new = BlockNode()
@@ -122,9 +119,6 @@ class Menu:
         elif self.cont > 0:
             new.prevHash = self.prevHash
         new.data = '{\n"INDEX"' + ': ' + str(new.index) + ',\n"TIMESTAP"' + ': ' + '"' + str(new.time) + '"' + ',\n"CLASS"' + ': ' + '"' + str(new.claSS) + '",' + '\n"DATA"' + ': '+ str(dataJson) + ',\n"PREVIUSHASH"' + ': ' + '"' + str(new.prevHash) + '"' + ',\n"HASH"' + ': ' + '"' + str(new.hash) + '"' + '\n}'
-        server.sendall(new.data.encode('utf-8'))
-        sys.stdout.write("<You>")
-        sys.stdout.flush()
         list.addBlock(new)
         self.cont += 1
         self.prevHash = new.hash
@@ -171,19 +165,5 @@ class Menu:
         if left != None:
             root.left = self.retornAVLNode(root.left, valLeft[0], valLeft[1], left["left"], left["right"])
         return root
-
-
 menu = Menu()
-while True:
-    read_sockets = select.select([server], [], [], 1)[0]
-    import msvcrt
-
-    if msvcrt.kbhit(): read_sockets.append(sys.stdin)
-    for socks in read_sockets:
-        if socks == server:
-            message = socks.recv(2048)
-            print(message.decode('utf-8'))
-        else:
-            print("")
-    menu.Menu()
-server.close()
+menu.Menu()
