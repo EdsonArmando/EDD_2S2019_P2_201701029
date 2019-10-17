@@ -32,8 +32,9 @@ class ListBlockChain:
             new.prev=self.last
             self.last=new
             self.last.next=None
-
-
+        self.cont+=1
+    def returnSize(self):
+        return self.cont
     def GenerateImage(self):
         texto = 'digraph { \n node [shape=record]; \n label="ListBlock";\n null [label="NULL" shape=box];\n'
         datesSocre = ""

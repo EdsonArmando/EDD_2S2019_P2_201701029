@@ -30,11 +30,21 @@ class Menu:
         self.prevHash=None
     def escuchar2(self):
         cont=0
+        new=BlockNode()
         while True:
             read_sockets = select.select([server], [], [], 1)[0]
             if cont==1:
                 if len(read_sockets)==1:
-                    break;
+                    sock=read_sockets[0]
+                    message = sock.recv(2560)
+                    if message.decode('utf-8') != "false":
+                        list.addBlock(new)
+                        self.cont+=1
+                        print("Add block succes")
+                        break;
+                    else:
+                        print("failed")
+                        break;
             import msvcrt
             if msvcrt.kbhit(): read_sockets.append(sys.stdin)
             for socks in read_sockets:
@@ -47,6 +57,13 @@ class Menu:
                             dict_obj["PREVIUSHASH"]))
                         j = hashlib.sha256(h.encode()).hexdigest()
                         if str(dict_obj["HASH"]) == j:
+                            new.index = str(self.cont)
+                            new.claSS=str(dict_obj["CLASS"])
+                            new.time=str(dict_obj["TIMESTAP"])
+                            new.datos=z
+                            new.data=str(dict_obj["DATA"])
+                            new.hash=str(dict_obj["HASH"])
+                            new.prevHash=str(dict_obj["PREVIUSHASH"])
                             server.sendall('true'.encode('utf-8'))
                             cont=1
                         else:
@@ -150,6 +167,7 @@ class Menu:
         elif op == "3":
             print("1. AVL")
             print("2. Recorridos")
+            print("3. BlockChain")
             op = input()
             if op == "1":
                 list.showBlock()
@@ -158,7 +176,7 @@ class Menu:
                 nodeAVL = list.returnBlock(key)
 
                 self.castJson(nodeAVL.datos)
-            if op == "2":
+            elif op == "2":
                 print("1. INORDEN")
                 print("2. PREORDEN")
                 print("3. POSTORDEN")
@@ -172,6 +190,8 @@ class Menu:
                 elif op == "3":
                     avl.recoPost(self.root)
                     avl.grafReco("POSTORDEN")
+            elif op=="3":
+                list.GenerateImage()
         self.Menu()
 
     def insertBlock(self, data,classs):

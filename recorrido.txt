@@ -2,6 +2,5 @@
 rankdir=LR;  
  node [shape=record];
 label="INORDEN"
-label="INORDEN"
 Mocica_2017010265->Kyara_2017010265->Mike_201875498->Armando_201701029->Lucy_2017010265->Aylin_2015478524->DulMa_2017010265
 }
