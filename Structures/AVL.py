@@ -6,6 +6,7 @@ class NodeAVL:
         self.left = None
         self.right = None
         self.alt = 1
+        self.fe = 0
 class AVL:
     def __init__(self):
         self.nodes=""
@@ -14,29 +15,6 @@ class AVL:
         self.nodes=""
         self.inicio = 'digraph grafica{\nrankdir=TB;\n label=\"Arbol AVL \"; \n node [shape = record, style=filled, fillcolor=seashell2];\n'
         self.recorrido = ' digraph{\nrankdir=LR;  \n node [shape=record];\n'
-    def addNode(self, root, key,name):
-        if root is None:
-            return NodeAVL(key,name)
-        elif key < root.key:
-            root.left = self.addNode(root.left, key,name)
-        else:
-            root.right = self.addNode(root.right, key,name)
-        if self.getNum(root) > 1 and key < root.left.key:
-            return self.rotacionDerecha(root)
-        if self.getNum(root) < -1 and key > root.right.key:
-            return self.rotacionIzqu(root)
-        if self.getNum(root) > 1 and key > root.left.key:
-            root.left = self.rotacionIzqu(root.left)
-            return self.rotacionDerecha(root)
-        if self.getNum(root) < -1 and key < root.right.key:
-            root.right = self.rotacionDerecha(root.right)
-            return self.rotacionIzqu(root)
-        d = self.getalt(root.left)
-        e = self.getalt(root.right)
-        m = max(d, e)
-        root.alt = 1 + m
-        print(root.alt)
-        return root
     def graficarAvl(self):
         with open("AVL.txt", 'w', encoding='utf-8') as f:
             f.write(self.inicio + self.nodes + self.rela+"}")
@@ -56,7 +34,7 @@ class AVL:
         print("")
     def graphAVL(self,root):
         if root != None:
-            data = "Carne: "+str(root.key)+"\n"+" Nombre: " + root.name
+            data = "Carne: "+str(root.key)+"\\n"+" Nombre: " + root.name +"\\n"+" ALT: " + str(root.alt)
             self.nodes = self.nodes + "nodo" + str(root.key) + " " + '[ label = \"<C0>|'+data+'|<C1>\"];\n'
             if root.left != None:
                 self.rela = self.rela + "nodo" + str(root.key) + ":C0->" + "nodo" + str(root.left.key) + "\n"

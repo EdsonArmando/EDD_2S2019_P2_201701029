@@ -1,25 +1,40 @@
 digraph grafica{
 rankdir=TB;
- label="Arbol AVL Block"; 
+ label="Arbol AVL "; 
  node [shape = record, style=filled, fillcolor=seashell2];
-nodoNery [ label = "<C0>|Carne: Nery
- Nombre: 201403525|<C1>"];
-nodoAndres [ label = "<C0>|Carne: Andres
- Nombre: 201212963|<C1>"];
-nodoEstudiante1 [ label = "<C0>|Carne: Estudiante1
- Nombre: 201005874|<C1>"];
-nodoAlan [ label = "<C0>|Carne: Alan
- Nombre: 201313526|<C1>"];
-nodoAnne [ label = "<C0>|Carne: Anne
- Nombre: 201403819|<C1>"];
-nodoFernando [ label = "<C0>|Carne: Fernando
- Nombre: 201403624|<C1>"];
-nodoEstudiante2 [ label = "<C0>|Carne: Estudiante2
- Nombre: 201602255|<C1>"];
-nodoNery:C0->nodoAndres
-nodoNery:C1->nodoAnne
-nodoAndres:C0->nodoEstudiante1
-nodoAndres:C1->nodoAlan
-nodoAnne:C0->nodoFernando
-nodoAnne:C1->nodoEstudiante2
+nodoArmando [ label = "<C0>|Carne: Armando\n Nombre: 201701029\n ALT: 4|<C1>"];
+nodoKyara [ label = "<C0>|Carne: Kyara\n Nombre: 2017010265\n ALT: 1|<C1>"];
+nodoMocica [ label = "<C0>|Carne: Mocica\n Nombre: 2017010265\n ALT: 1|<C1>"];
+nododos [ label = "<C0>|Carne: dos\n Nombre: 201701027485\n ALT: 3|<C1>"];
+nodouno [ label = "<C0>|Carne: uno\n Nombre: 201701027485\n ALT: 2|<C1>"];
+nodoMike [ label = "<C0>|Carne: Mike\n Nombre: 201875498\n ALT: 1|<C1>"];
+nodotres [ label = "<C0>|Carne: tres\n Nombre: 201701027485\n ALT: 1|<C1>"];
+nodocuatro [ label = "<C0>|Carne: cuatro\n Nombre: 201701027485\n ALT: 0|<C1>"];
+nodoAylin [ label = "<C0>|Carne: Aylin\n Nombre: 2015478524\n ALT: 1|<C1>"];
+nodoLucy [ label = "<C0>|Carne: Lucy\n Nombre: 2017010265\n ALT: 1|<C1>"];
+nodosiete [ label = "<C0>|Carne: siete\n Nombre: 201701027485\n ALT: 5|<C1>"];
+nodoocho [ label = "<C0>|Carne: ocho\n Nombre: 201701027485\n ALT: 4|<C1>"];
+nodoDulMa [ label = "<C0>|Carne: DulMa\n Nombre: 2017010265\n ALT: 1|<C1>"];
+nodoKarol [ label = "<C0>|Carne: Karol\n Nombre: 201524156\n ALT: 2|<C1>"];
+nodoAlice [ label = "<C0>|Carne: Alice\n Nombre: 202203541\n ALT: 3|<C1>"];
+nodoEmiliana [ label = "<C0>|Carne: Emiliana\n Nombre: 2017010265\n ALT: 1|<C1>"];
+nodoDJ [ label = "<C0>|Carne: DJ\n Nombre: 20170102785\n ALT: 1|<C1>"];
+nododiez [ label = "<C0>|Carne: diez\n Nombre: 201701027485\n ALT: 0|<C1>"];
+nodoArmando:C0->nodoKyara
+nodoArmando:C1->nodoAylin
+nodoKyara:C0->nodoMocica
+nodoKyara:C1->nodoMike
+nodoMocica:C0->nododos
+nodoMocica:C1->nodouno
+nodoMike:C0->nodotres
+nodoMike:C1->nodocuatro
+nodoAylin:C0->nodoLucy
+nodoAylin:C1->nodoDulMa
+nodoLucy:C0->nodosiete
+nodoLucy:C1->nodoocho
+nodoDulMa:C0->nodoKarol
+nodoDulMa:C1->nodoEmiliana
+nodoKarol:C0->nodoAlice
+nodoEmiliana:C0->nodoDJ
+nodoEmiliana:C1->nododiez
 }

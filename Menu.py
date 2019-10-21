@@ -23,6 +23,7 @@ class Menu:
         self.root = None
         self.data = None
         self.cont = 0
+        self.alt=0
         self.prevHash=None
     def escuchar2(self):
         cont=0
@@ -242,28 +243,8 @@ class Menu:
     def graphAVL(self, avleData):
         dict_obj = json.loads(str(avleData))
         value = dict_obj["value"].split("-")
-        """ print("--------DATA--------")
-                        print(str(dict_obj["DATA"]))
-                        print("--------DATA--------")
-                        print(str(dict_obj["INDEX"]))
-                        print(str(dict_obj["TIMESTAMP"]))
-                        print(str(dict_obj["CLASS"]))
-                        print(str(dict_obj["PREVIOUSHASH"]))
-                        print(str(dict_obj["HASH"]))
-                        print(z)
-                        print(j)"""
         left = dict_obj["left"]
         right = dict_obj["right"]
-        """ print("--------DATA--------")
-                print(str(dict_obj["DATA"]))
-                print("--------DATA--------")
-                print(str(dict_obj["INDEX"]))
-                print(str(dict_obj["TIMESTAMP"]))
-                print(str(dict_obj["CLASS"]))
-                print(str(dict_obj["PREVIOUSHASH"]))
-                print(str(dict_obj["HASH"]))
-                print(z)
-                print(j)"""
         data = dataNode(value[0], value[1], left, right)
         self.generateaAVL(data.name, data.key, data.left, data.right)
     def generateaAVL(self, name, key, left, right):
@@ -271,29 +252,12 @@ class Menu:
         root = NodeAVL(name, key)
         root.right = NodeAVL(right["value"].split("-")[0], right["value"].split("-")[1])
         root.right = self.nodeTree(root.right, " ", " ", right["left"], right["right"])
-        """ print("--------DATA--------")
-                        print(str(dict_obj["DATA"]))
-                        print("--------DATA--------")
-                        print(str(dict_obj["INDEX"]))
-                        print(str(dict_obj["TIMESTAMP"]))
-                        print(str(dict_obj["CLASS"]))
-                        print(str(dict_obj["PREVIOUSHASH"]))
-                        print(str(dict_obj["HASH"]))
-                        print(z)
-                        print(j)"""
+        self.alt=0
         root.left = NodeAVL(left["value"].split("-")[0], left["value"].split("-")[1])
         root.left = self.nodeTree(root.left, " ", " ", left["left"], left["right"])
-        """ print("--------DATA--------")
-                        print(str(dict_obj["DATA"]))
-                        print("--------DATA--------")
-                        print(str(dict_obj["INDEX"]))
-                        print(str(dict_obj["TIMESTAMP"]))
-                        print(str(dict_obj["CLASS"]))
-                        print(str(dict_obj["PREVIOUSHASH"]))
-                        print(str(dict_obj["HASH"]))
-                        print(z)
-                        print(j)"""
+        root.alt=self.alt+1
         self.root = root
+        self.alt = 0
         avl.graphAVL(root)
         avl.graficarAvl()
     def nodeTree(self, root, key, name, left, right):
@@ -301,45 +265,21 @@ class Menu:
             valLeft = left["value"].split("-")
         if right != None:
             valRigt = right["value"].split("-")
+        else:
+            try:
+                root.alt=self.alt
+            except:
+                print("err")
         if root is None:
-            """ print("--------DATA--------")
-                            print(str(dict_obj["DATA"]))
-                            print("--------DATA--------")
-                            print(str(dict_obj["INDEX"]))
-                            print(str(dict_obj["TIMESTAMP"]))
-                            print(str(dict_obj["CLASS"]))
-                            print(str(dict_obj["PREVIOUSHASH"]))
-                            print(str(dict_obj["HASH"]))
-                            print(z)
-                            print(j)"""
             return NodeAVL(key, name)
         if root.right is None and right != None:
             root.right = self.nodeTree(root.right, valRigt[0], valRigt[1], left, right)
         if root.left is None and left != None:
             root.left = self.nodeTree(root.left, valLeft[0], valLeft[1], left, right)
-            """ print("--------DATA--------")
-                            print(str(dict_obj["DATA"]))
-                            print("--------DATA--------")
-                            print(str(dict_obj["INDEX"]))
-                            print(str(dict_obj["TIMESTAMP"]))
-                            print(str(dict_obj["CLASS"]))
-                            print(str(dict_obj["PREVIOUSHASH"]))
-                            print(str(dict_obj["HASH"]))
-                            print(z)
-                            print(j)"""
         if right != None:
             root.right = self.nodeTree(root.right, valRigt[0], valRigt[1], right["left"], right["right"])
         if left != None:
-            """ print("--------DATA--------")
-                            print(str(dict_obj["DATA"]))
-                            print("--------DATA--------")
-                            print(str(dict_obj["INDEX"]))
-                            print(str(dict_obj["TIMESTAMP"]))
-                            print(str(dict_obj["CLASS"]))
-                            print(str(dict_obj["PREVIOUSHASH"]))
-                            print(str(dict_obj["HASH"]))
-                            print(z)
-                            print(j)"""
+            self.alt += 1
             root.left = self.nodeTree(root.left, valLeft[0], valLeft[1], left["left"], left["right"])
         return root
 menu = Menu()
