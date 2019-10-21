@@ -12,7 +12,7 @@ class AVL:
         self.rela2=""
         self.rela=""
         self.nodes=""
-        self.inicio = 'digraph grafica{\nrankdir=TB;\n label=\"Arbol AVL Block\"; \n node [shape = record, style=filled, fillcolor=seashell2];\n'
+        self.inicio = 'digraph grafica{\nrankdir=TB;\n label=\"Arbol AVL \"; \n node [shape = record, style=filled, fillcolor=seashell2];\n'
         self.recorrido = ' digraph{\nrankdir=LR;  \n node [shape=record];\n'
     def addNode(self, root, key,name):
         if root is None:
@@ -56,7 +56,7 @@ class AVL:
         print("")
     def graphAVL(self,root):
         if root != None:
-            data = "Name: "+str(root.key)+"\n"+" Carne: " + root.name
+            data = "Carne: "+str(root.key)+"\n"+" Nombre: " + root.name
             self.nodes = self.nodes + "nodo" + str(root.key) + " " + '[ label = \"<C0>|'+data+'|<C1>\"];\n'
             if root.left != None:
                 self.rela = self.rela + "nodo" + str(root.key) + ":C0->" + "nodo" + str(root.left.key) + "\n"
@@ -138,19 +138,3 @@ class AVL:
         print("{0} ".format(root.key), end="")
         self.preOrder(root.left)
         self.preOrder(root.right)
-"""avlTree = AVL()
-root = None
-
-root = avlTree.addNode(root, 1)
-root = avlTree.addNode(root, 2)
-root = avlTree.addNode(root, 3)
-root = avlTree.addNode(root, 4)
-root = avlTree.addNode(root, 5)
-root = avlTree.addNode(root, 6)
-root = avlTree.addNode(root, 7)
-root = avlTree.addNode(root, 8)
-
-
-avlTree.preOrder(root)
-avlTree.graphAVL(root)
-avlTree.graficarAvl()"""

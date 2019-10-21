@@ -4,7 +4,7 @@ import hashlib
 class BlockNode:
     def __init__(self):
         now = datetime.now()
-        self.time = now.strftime("%d-%m-%y: :%H:%M:%S")
+        self.time = now.strftime("%d-%m-%y::%H:%M:%S")
         self.index=0
         self.datos=None
         self.data = None
@@ -56,7 +56,7 @@ class ListBlockChain:
     def showBlock(self):
         aux=self.first
         while aux !=None:
-            print("No: ", aux.index, "Time: ", aux.time , "Hash", aux.prevHash,"Class: ", aux.claSS)
+            print("No: ", aux.index, "Time: ", aux.time , "Hash", aux.hash,"Class: ", aux.claSS)
             aux=aux.next
     def returnFirt(self):
         return self.first

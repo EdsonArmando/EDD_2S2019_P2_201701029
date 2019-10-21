@@ -5,12 +5,10 @@ from Structures.AVL import AVL
 from Structures.AVL import NodeAVL
 from Structures.ListBlock import ListBlockChain
 from Structures.ListBlock import BlockNode
-from curses import KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN
-from curses import KEY_LEFT
+from curses import KEY_LEFT, KEY_RIGHT, KEY_UP
 import socket
 import select
 import sys
-
 list = ListBlockChain()
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.connect(("localhost", 8080))
@@ -20,8 +18,6 @@ class dataNode:
         self.name = name
         self.left = left
         self.right = right
-
-
 class Menu:
     def __init__(self):
         self.root = None
@@ -53,17 +49,17 @@ class Menu:
                     try:
                         dict_obj = json.loads(str(message.decode('utf-8')))
                         z = json.dumps(dict_obj["DATA"], indent=4)
-                        h = (str(dict_obj["INDEX"]) + str(dict_obj["TIMESTAP"]) + str(dict_obj["CLASS"]) + str(z) + str(
-                            dict_obj["PREVIUSHASH"]))
+                        h = (str(dict_obj["INDEX"]) + str(dict_obj["TIMESTAMP"]) + str(dict_obj["CLASS"]) + str(z) + str(
+                            dict_obj["PREVIOUSHASH"]))
                         j = hashlib.sha256(h.encode()).hexdigest()
                         if str(dict_obj["HASH"]) == j:
                             new.index = str(self.cont)
                             new.claSS=str(dict_obj["CLASS"])
-                            new.time=str(dict_obj["TIMESTAP"])
+                            new.time=str(dict_obj["TIMESTAMP"])
                             new.datos=z
                             new.data=str(dict_obj["DATA"])
                             new.hash=str(dict_obj["HASH"])
-                            new.prevHash=str(dict_obj["PREVIUSHASH"])
+                            new.prevHash=str(dict_obj["PREVIOUSHASH"])
                             server.sendall('true'.encode('utf-8'))
                             cont=1
                         else:
@@ -95,9 +91,9 @@ class Menu:
                     try:
                         dict_obj = json.loads(str(message.decode('utf-8')))
                         z = json.dumps(dict_obj["DATA"], indent=4)
-                        h = (str(dict_obj["INDEX"]) + str(dict_obj["TIMESTAP"]) + str(dict_obj["CLASS"]) + str(
+                        h = (str(dict_obj["INDEX"]) + str(dict_obj["TIMESTAMP"]) + str(dict_obj["CLASS"]) + str(
                             z) + str(
-                            dict_obj["PREVIUSHASH"]))
+                            dict_obj["PREVIOUSHASH"]))
                         j = hashlib.sha256(h.encode()).hexdigest()
                         if str(dict_obj["HASH"]) == j:
                             server.sendall('true'.encode('utf-8'))
@@ -124,7 +120,7 @@ class Menu:
                 cont = contents.split("\n")
             clase = cont[0]
             data = cont[1]
-            self.data = data.replace("data,", "")
+            self.data = data.replace("data,","")
             nodoGlobal=self.insertBlock(self.data, clase.split(",")[1])
             self.data = ""
             self.verificar(nodoGlobal)
@@ -134,9 +130,8 @@ class Menu:
         elif op == "2":
             node = list.returnFirt()
             stdscr = curses.initscr()
-            win = curses.newwin(42, 120, 0, 0)
+            win = curses.newwin(40, 120, 1, 2)  # create a new curses window
             curses.noecho()
-            curses.cbreak()
             curses.curs_set(0)
             win.keypad(True)
             key = None
@@ -150,13 +145,44 @@ class Menu:
                     win.refresh()
                     if node.prev != None:
                         node = node.prev
-                    win.addstr(10, 40, str(node.data))
+                    cont = 0
+                    y = 11
+                    x = 10
+                    win.addstr(5,10,"CLASS: "+str(node.claSS))
+                    win.addstr(6, 10, "INDEX: " + str(node.index))
+                    win.addstr(7, 10, "TIMESTAMP: " + str(node.time))
+                    win.addstr(8, 10, "HASH: " + str(node.hash))
+                    win.addstr(9, 10, "PREVIOUSHASH: " + str(node.prevHash))
+                    win.addstr(10, 10, "DATA: ")
+                    while cont < len(node.datos):
+                        letra = node.datos[cont]
+                        win.addstr(y, x, letra)
+                        if x == 80:
+                            y += 1
+                            x = 10
+                        cont += 1
+                        x += 1
                 elif key == KEY_RIGHT:
                     win.clear()
                     win.border(0)
                     win.refresh()
-                    win.addstr(10, 40, str(node.data))
-                    print(node.data)
+                    cont = 0
+                    y = 11
+                    x=10
+                    win.addstr(5, 10, "CLASS: " + str(node.claSS))
+                    win.addstr(6, 10, "INDEX: " + str(node.index))
+                    win.addstr(7, 10, "TIMESTAMP: " + str(node.time))
+                    win.addstr(8, 10, "HASH: " + str(node.hash))
+                    win.addstr(9, 10, "PREVIOUSHASH: " + str(node.prevHash))
+                    win.addstr(10, 10, "DATA: ")
+                    while cont < len(node.datos):
+                        letra = node.datos[cont]
+                        win.addstr(y, x, letra)
+                        if x == 80:
+                            y += 1
+                            x=10
+                        cont += 1
+                        x+=1
                     if node.next != None:
                         node = node.next
                 elif key == KEY_UP:
@@ -175,7 +201,7 @@ class Menu:
                 key = input()
                 nodeAVL = list.returnBlock(key)
 
-                self.castJson(nodeAVL.datos)
+                self.graphAVL(nodeAVL.datos)
             elif op == "2":
                 print("1. INORDEN")
                 print("2. PREORDEN")
@@ -193,7 +219,6 @@ class Menu:
             elif op=="3":
                 list.GenerateImage()
         self.Menu()
-
     def insertBlock(self, data,classs):
         new = BlockNode()
         dataJson = json.dumps(json.loads(data), indent=4)
@@ -205,8 +230,7 @@ class Menu:
         elif self.cont > 0:
             new.prevHash = self.prevHash
         new.hash = self.sha256(str(new.index) + str(new.time) + str(new.claSS)+str(dataJson) + str(new.prevHash))
-        new.data = '{\n"INDEX"' + ': ' + str(new.index) + ',\n"TIMESTAP"' + ': ' + '"' + str(new.time) + '"' + ',\n"CLASS"' + ': ' + '"' + str(new.claSS) + '",' + '\n"DATA"' + ': '+ str(dataJson) + ',\n"PREVIUSHASH"' + ': ' + '"' + str(new.prevHash) + '"' + ',\n"HASH"' + ': ' + '"' + str(new.hash) + '"' + '\n}'
-        print(dataJson)
+        new.data = '{\n"INDEX"' + ': ' + str(new.index) + ',\n"TIMESTAMP"' + ': ' + '"' + str(new.time) + '"' + ',\n"CLASS"' + ': ' + '"' + str(new.claSS) + '",' + '\n"DATA"' + ': '+ str(dataJson) + ',\n"PREVIOUSHASH"' + ': ' + '"' + str(new.prevHash) + '"' + ',\n"HASH"' + ': ' + '"' + str(new.hash) + '"' + '\n}'
         server.sendall(new.data.encode('utf-8'))
         sys.stdout.flush()
         self.cont += 1
@@ -215,47 +239,110 @@ class Menu:
     def sha256(self, val):
         h = hashlib.sha256(val.encode()).hexdigest()
         return h
-
-    def castJson(self, avleData):
+    def graphAVL(self, avleData):
         dict_obj = json.loads(str(avleData))
-        value = None
-        left = None
-        right = None
         value = dict_obj["value"].split("-")
+        """ print("--------DATA--------")
+                        print(str(dict_obj["DATA"]))
+                        print("--------DATA--------")
+                        print(str(dict_obj["INDEX"]))
+                        print(str(dict_obj["TIMESTAMP"]))
+                        print(str(dict_obj["CLASS"]))
+                        print(str(dict_obj["PREVIOUSHASH"]))
+                        print(str(dict_obj["HASH"]))
+                        print(z)
+                        print(j)"""
         left = dict_obj["left"]
         right = dict_obj["right"]
+        """ print("--------DATA--------")
+                print(str(dict_obj["DATA"]))
+                print("--------DATA--------")
+                print(str(dict_obj["INDEX"]))
+                print(str(dict_obj["TIMESTAMP"]))
+                print(str(dict_obj["CLASS"]))
+                print(str(dict_obj["PREVIOUSHASH"]))
+                print(str(dict_obj["HASH"]))
+                print(z)
+                print(j)"""
         data = dataNode(value[0], value[1], left, right)
-        self.craeteAVL(data.name, data.key, data.left, data.right)
-
-    def craeteAVL(self, name, key, left, right):
+        self.generateaAVL(data.name, data.key, data.left, data.right)
+    def generateaAVL(self, name, key, left, right):
         avl = AVL()
-        root = None
         root = NodeAVL(name, key)
         root.right = NodeAVL(right["value"].split("-")[0], right["value"].split("-")[1])
-        root.right = self.retornAVLNode(root.right, " ", " ", right["left"], right["right"])
+        root.right = self.nodeTree(root.right, " ", " ", right["left"], right["right"])
+        """ print("--------DATA--------")
+                        print(str(dict_obj["DATA"]))
+                        print("--------DATA--------")
+                        print(str(dict_obj["INDEX"]))
+                        print(str(dict_obj["TIMESTAMP"]))
+                        print(str(dict_obj["CLASS"]))
+                        print(str(dict_obj["PREVIOUSHASH"]))
+                        print(str(dict_obj["HASH"]))
+                        print(z)
+                        print(j)"""
         root.left = NodeAVL(left["value"].split("-")[0], left["value"].split("-")[1])
-        root.left = self.retornAVLNode(root.left, " ", " ", left["left"], left["right"])
+        root.left = self.nodeTree(root.left, " ", " ", left["left"], left["right"])
+        """ print("--------DATA--------")
+                        print(str(dict_obj["DATA"]))
+                        print("--------DATA--------")
+                        print(str(dict_obj["INDEX"]))
+                        print(str(dict_obj["TIMESTAMP"]))
+                        print(str(dict_obj["CLASS"]))
+                        print(str(dict_obj["PREVIOUSHASH"]))
+                        print(str(dict_obj["HASH"]))
+                        print(z)
+                        print(j)"""
         self.root = root
         avl.graphAVL(root)
         avl.graficarAvl()
-    def retornAVLNode(self, root, key, name, left, right):
+    def nodeTree(self, root, key, name, left, right):
         if left != None:
             valLeft = left["value"].split("-")
         if right != None:
             valRigt = right["value"].split("-")
         if root is None:
+            """ print("--------DATA--------")
+                            print(str(dict_obj["DATA"]))
+                            print("--------DATA--------")
+                            print(str(dict_obj["INDEX"]))
+                            print(str(dict_obj["TIMESTAMP"]))
+                            print(str(dict_obj["CLASS"]))
+                            print(str(dict_obj["PREVIOUSHASH"]))
+                            print(str(dict_obj["HASH"]))
+                            print(z)
+                            print(j)"""
             return NodeAVL(key, name)
         if root.right is None and right != None:
-            root.right = self.retornAVLNode(root.right, valRigt[0], valRigt[1], left, right)
+            root.right = self.nodeTree(root.right, valRigt[0], valRigt[1], left, right)
         if root.left is None and left != None:
-            root.left = self.retornAVLNode(root.left, valLeft[0], valLeft[1], left, right)
+            root.left = self.nodeTree(root.left, valLeft[0], valLeft[1], left, right)
+            """ print("--------DATA--------")
+                            print(str(dict_obj["DATA"]))
+                            print("--------DATA--------")
+                            print(str(dict_obj["INDEX"]))
+                            print(str(dict_obj["TIMESTAMP"]))
+                            print(str(dict_obj["CLASS"]))
+                            print(str(dict_obj["PREVIOUSHASH"]))
+                            print(str(dict_obj["HASH"]))
+                            print(z)
+                            print(j)"""
         if right != None:
-            root.right = self.retornAVLNode(root.right, valRigt[0], valRigt[1], right["left"], right["right"])
+            root.right = self.nodeTree(root.right, valRigt[0], valRigt[1], right["left"], right["right"])
         if left != None:
-            root.left = self.retornAVLNode(root.left, valLeft[0], valLeft[1], left["left"], left["right"])
+            """ print("--------DATA--------")
+                            print(str(dict_obj["DATA"]))
+                            print("--------DATA--------")
+                            print(str(dict_obj["INDEX"]))
+                            print(str(dict_obj["TIMESTAMP"]))
+                            print(str(dict_obj["CLASS"]))
+                            print(str(dict_obj["PREVIOUSHASH"]))
+                            print(str(dict_obj["HASH"]))
+                            print(z)
+                            print(j)"""
+            root.left = self.nodeTree(root.left, valLeft[0], valLeft[1], left["left"], left["right"])
         return root
 menu = Menu()
 menu.verificar(None)
 menu.Menu()
-
 server.close()

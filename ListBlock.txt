@@ -2,12 +2,12 @@ digraph {
  node [shape=record]; 
  label="ListBlock";
  null [label="NULL" shape=box];
-0[label="{<data> Class: COMPI2\n Time: 16-10-19: :22:15:29\n Has: c0329851ba088780b65d0f0d44dfa8c3763ec89f60c5ae8711beb3a8dc38b26d\n PrevHash: 0000| <ref>  }", width=1.2]
+0[label="{<data> Class: ORGA\n Time: 19-10-19::10:51:09\n Has: 3632e506f2129b438e763c72067f3440788606b12efe17b25d8e0098833df62e\n PrevHash: 0000| <ref>  }", width=1.2]
 0:ref:c->1:data
-1[label="{<data> Class: ORGA\n Time: 16-10-19: :22:17:00\n Has: c962e501f83acb01a850d85d3fca3e998218eb4e9468e1782b4da6b9f9a473e2\n PrevHash: c0329851ba088780b65d0f0d44dfa8c3763ec89f60c5ae8711beb3a8dc38b26d| <ref>  }", width=1.2]
+1[label="{<data> Class: Compiladores1\n Time: 19-10-19::10:51:14\n Has: f6fbb5d1ca875ce633d5955d87b452f0ba4a023fef7abe3c3cb1cf15373ca769\n PrevHash: 3632e506f2129b438e763c72067f3440788606b12efe17b25d8e0098833df62e| <ref>  }", width=1.2]
 1:ref:c->2:data
-2[label="{<data> Class: Compiladores1\n Time: 16-10-19: :22:17:20\n Has: c63f5e9511a6efc08839e2fc24afcc7c907182775ae372a1a7912facf815c354\n PrevHash: c962e501f83acb01a850d85d3fca3e998218eb4e9468e1782b4da6b9f9a473e2| <ref>  }", width=1.2]
+2[label="{<data> Class: Archivos\n Time: 19-10-19::10:51:20\n Has: 6070ef38966d755cd6bac735af45d75ba7c4a59f0131ae940094f8bf949cd14b\n PrevHash: f6fbb5d1ca875ce633d5955d87b452f0ba4a023fef7abe3c3cb1cf15373ca769| <ref>  }", width=1.2]
 2:ref:c->3:data
-3[label="{<data> Class: Archivos\n Time: 16-10-19: :22:17:37\n Has: abefa0322c220c324dcb4412fca1c14465e2c3e044b414abfd1258dbeb409465\n PrevHash: c63f5e9511a6efc08839e2fc24afcc7c907182775ae372a1a7912facf815c354| <ref>  }", width=1.2]
+3[label="{<data> Class: COMPI2\n Time: 19-10-19::10:51:25\n Has: cca23224f0103886bf5df7b20b0ae6041e59c642814e17f2f64a8edf4d4558a1\n PrevHash: 6070ef38966d755cd6bac735af45d75ba7c4a59f0131ae940094f8bf949cd14b| <ref>  }", width=1.2]
 3:ref:c->null
 }

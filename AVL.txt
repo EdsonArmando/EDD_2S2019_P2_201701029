@@ -2,24 +2,24 @@ digraph grafica{
 rankdir=TB;
  label="Arbol AVL Block"; 
  node [shape = record, style=filled, fillcolor=seashell2];
-nodoArmando [ label = "<C0>|Name: Armando
- Carne: 201701029|<C1>"];
-nodoKyara [ label = "<C0>|Name: Kyara
- Carne: 2017010265|<C1>"];
-nodoMocica [ label = "<C0>|Name: Mocica
- Carne: 2017010265|<C1>"];
-nodoMike [ label = "<C0>|Name: Mike
- Carne: 201875498|<C1>"];
-nodoAylin [ label = "<C0>|Name: Aylin
- Carne: 2015478524|<C1>"];
-nodoLucy [ label = "<C0>|Name: Lucy
- Carne: 2017010265|<C1>"];
-nodoDulMa [ label = "<C0>|Name: DulMa
- Carne: 2017010265|<C1>"];
-nodoArmando:C0->nodoKyara
-nodoArmando:C1->nodoAylin
-nodoKyara:C0->nodoMocica
-nodoKyara:C1->nodoMike
-nodoAylin:C0->nodoLucy
-nodoAylin:C1->nodoDulMa
+nodoNery [ label = "<C0>|Carne: Nery
+ Nombre: 201403525|<C1>"];
+nodoAndres [ label = "<C0>|Carne: Andres
+ Nombre: 201212963|<C1>"];
+nodoEstudiante1 [ label = "<C0>|Carne: Estudiante1
+ Nombre: 201005874|<C1>"];
+nodoAlan [ label = "<C0>|Carne: Alan
+ Nombre: 201313526|<C1>"];
+nodoAnne [ label = "<C0>|Carne: Anne
+ Nombre: 201403819|<C1>"];
+nodoFernando [ label = "<C0>|Carne: Fernando
+ Nombre: 201403624|<C1>"];
+nodoEstudiante2 [ label = "<C0>|Carne: Estudiante2
+ Nombre: 201602255|<C1>"];
+nodoNery:C0->nodoAndres
+nodoNery:C1->nodoAnne
+nodoAndres:C0->nodoEstudiante1
+nodoAndres:C1->nodoAlan
+nodoAnne:C0->nodoFernando
+nodoAnne:C1->nodoEstudiante2
 }
